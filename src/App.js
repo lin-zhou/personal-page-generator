@@ -1,10 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import ResumeUpload from './views/ResumeUpload.js';
+import ResumeUpload from "./views/ResumeUpload.js";
+import Register from "./views/Register.js";
+import Login from "./views/Login.js";
 
 function App() {
   return (
-    <ResumeUpload />
+    <div>
+      <Login />
+      <Register />
+      <ResumeUpload />
+    </div>
   );
 }
 
