@@ -94,7 +94,7 @@ def delete(userid):
         if current_identity is not None:
             with app.app_context():
                 if current_identity.id == userid:
-                    commit_db('delete from Users where id = ?', (user.id,))
+                    commit_db('delete from Users where id = ?', (current_identity.id,))
                     return jsonify({"message": "User deleted."})
                 return jsonify({"error": "Not allowed to delete other users."})
         return jsonify({"error": "User not found"})
