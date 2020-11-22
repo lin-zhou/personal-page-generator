@@ -1,0 +1,18 @@
+.edit-container {
+  display: flex;
+  justify-content: center;
+}
+
+.profile__edit-info {
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: calc(100vh - 400px);
+  border: 1px solid rgba(62, 62, 62, 0.5);
+  width: 60%;
+  max-width: 500px;
+  border-radius: 10px;
+}

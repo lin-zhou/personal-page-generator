@@ -34,7 +34,7 @@ function ShowResume() {
 
   console.log("hi")
   return (
-    <div className="resume-display">
+    <div className="resume-display view">
       <div className="name">{loaded && data.names[0]}</div>
       {loaded ?
         <Summary expSummary={data.summary.experience} /> :

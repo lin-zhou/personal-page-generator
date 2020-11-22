@@ -1,4 +1,4 @@
-.resume-upload {
+.upload {
   text-align: center;
 }
 
@@ -13,15 +13,12 @@
   }
 }
 
-.resume-upload-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.upload__header {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 @keyframes App-logo-spin {
@@ -31,4 +28,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.normal-font {
+  font-size: 14px;
+}
+
+.upload__button {
+  margin-top: 10px;
 }

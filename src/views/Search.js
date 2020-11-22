@@ -10,13 +10,17 @@ let interval = null
 class Search extends Component {
   constructor(props) {
     super(props)
-    this.state = { users: [] }
+    this.state = {
+      query: "",
+      users: []
+    }
   }
 
   changeSearch = (e) => {
     if (e.target.value.length <= 0) return
 
-    const v = e.target.value
+    const v = e.target.value;
+    this.setState({ query: v });
     const getResults = () => {
       request(baseUrl + "/autocomplete/" + v).then(d => d.json()).then(d => { this.setState(d) })
     }
@@ -27,12 +31,22 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="search">
+      <div className="search view">
         <h1 className="search-container">Search: <input className="search-box" type="string" onChange={this.changeSearch} /></h1>
         <ul>{this.state.users.map(d => {
           return <li key={d.id}><Link to={`/resume/${d.id}`}>{`${d.firstname} ${d.lastname}`}</Link></li>
         })}
         </ul>
+        {this.state.users.length > 0 ?
+          ""
+          :
+          <p>
+            {this.state.query != "" ?
+              "No users with names containing your query." :
+              "Type a few letters and you'll get a list of users whose name contains your query!"
+            }
+          </p>
+        }
       </div>
     );
   }

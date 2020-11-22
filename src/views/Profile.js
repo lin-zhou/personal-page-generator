@@ -1,15 +1,23 @@
-import React from "react";
-import "../css/ResumeUpload.css";
-import { Component } from "react";
+import React, { Component } from "react";
 import { baseUrl } from "../utilities";
 import { Link } from "react-router-dom";
-import { request } from "../utilities.js"
+import { request } from "../utilities.js";
+
+import "../css/Profile.css";
 
 // This is the page where the user uploads their resume to be parsed.
 class Profile extends Component {
   constructor(props) {
     super(props)
-    this.state = { loaded: false, username: '', password: '', firstname: '', lastname: '', email: '', id: 0 };
+    this.state = {
+      loaded: false,
+      username: '',
+      password: '',
+      firstname: '',
+      lastname: '',
+      email: '',
+      id: 0
+    };
   }
 
   componentDidMount() {
@@ -54,17 +62,39 @@ class Profile extends Component {
   };
 
   render() {
-    return (<div className="Profile">
+    return (<div className="profile view">
       <h1>Profile</h1>
-      <Link to={`/resume/${this.state.id}`}>Resume</Link>
-        Username: <input type="string" value={this.state.username} onChange={this.changeUsername} />
-        Password: <input type="string" value={this.state.password} onChange={this.changePassword} />
-        Email <input type="string" value={this.state.email} onChange={this.changeEmail} />
-        First Name: <input type="string" value={this.state.firstname} onChange={this.changeFirstName} />
-        Last Name: <input type="string" value={this.state.lastname} onChange={this.changeLastName} />
-      <button type="submit" onClick={this.update}>
-        Update
-        </button>
+      <div>
+        Check out your generated personal <Link to={`/resume/${this.state.id}`}>website</Link>!
+      </div>
+      <div className="edit-container">
+        <div className="profile__edit-info shadow-box">
+          Edit your information here.
+        <div className="edit-info__field">
+            <label for="firstname">First Name</label><br />
+            <input className="edit-info__input" type="string" name="firstname" value={this.state.firstname} onChange={this.changeFirstName} />
+          </div>
+          <div className="edit-info__field">
+            <label for="lastname">Last Name</label><br />
+            <input className="edit-info__input" type="string" name="lastname" value={this.state.lastname} onChange={this.changeLastName} />
+          </div>
+          <div className="edit-info__field">
+            <label for="username">User Name</label><br />
+            <input className="edit-info__input" type="string" name="username" value={this.state.username} onChange={this.changeUsername} />
+          </div>
+          <div className="edit-info__field">
+            <label for="password">Password</label><br />
+            <input className="edit-info__input" type="string" name="email" value={this.state.password} onChange={this.changePassword} />
+          </div>
+          <div className="edit-info__field">
+            <label for="email">Email</label><br />
+            <input className="edit-info__input" type="string" name="email" value={this.state.email} onChange={this.changeEmail} />
+          </div>
+          <button className="edit-info__button custom-button" type="submit" onClick={this.update}>
+            Update
+          </button>
+        </div>
+      </div>
     </div>
     );
   }
