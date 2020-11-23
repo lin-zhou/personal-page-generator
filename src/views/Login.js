@@ -10,7 +10,9 @@ class Login extends Component {
     super(props);
     this.state = {
       badLogin: false,
-      badRegister: false
+      badRegister: false,
+      failedLogin: false,
+      failedRegister: false
     }
   }
 
@@ -32,6 +34,7 @@ class Login extends Component {
   };
 
   login = (e) => {
+    this.setState({ failedLogin: false });
     if (!this.state.username || !this.state.password) {
       this.setState({ badLogin: true });
     } else {
@@ -48,13 +51,19 @@ class Login extends Component {
       })
         .then((response) => response.json())
         .then((data) => {
-          setAuthToken(data.access_token);
+          if (data.hasOwnProperty('access_token')) {
+            setAuthToken(data.access_token);
+            this.setState({ failedLogin: false });
+          } else {
+            this.setState({ failedLogin: true });
+          }
         })
         .catch((err) => console.log(err));
     }
   };
 
   register = (e) => {
+    this.setState({ failedRegister: false });
     if (!this.state.firstname || !this.state.lastname || !this.state.username || !this.state.password || !this.state.email) {
       this.setState({ badRegister: true });
     } else {
@@ -84,9 +93,16 @@ class Login extends Component {
           })
             .then((response) => response.json())
             .then((data) => {
-              setAuthToken(data.access_token);
+              if (data.hasOwnProperty('access_token')) {
+                setAuthToken(data.access_token);
+                this.setState({ failedRegister: false });
+              } else {
+                this.setState({ failedRegister: true });
+              }
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+              console.log(err)
+            });
         })
         .catch((err) => console.log(err));
     }
@@ -126,6 +142,7 @@ class Login extends Component {
               Login
             </button>
             <p className="red-text">{this.state.badLogin && "Username and password cannot be empty."}</p>
+            <p className="red-text">{this.state.failedLogin && "Incorrect username or password."}</p>
           </div>
         </div>
         <div className="register half-gap shadow-box">
@@ -189,6 +206,7 @@ class Login extends Component {
               Register
             </button>
             <p className="red-text">{this.state.badRegister && "Cannot register with empty fields."}</p>
+            <p className="red-text">{this.state.failedRegister && "Something went wrong with your registration."}</p>
           </div>
         </div>
       </div>

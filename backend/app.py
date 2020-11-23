@@ -7,8 +7,10 @@ from flask_jwt import JWT, jwt_required, current_identity
 from werkzeug.security import safe_str_cmp
 from flask_cors import CORS
 import json
+from datetime import timedelta
 
 app = Flask(__name__)
+app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=262980)
 CORS(app)
 
 app.secret_key = 'ResumeUploaderSecret'
