@@ -28,14 +28,10 @@ function ShowResume() {
       });
     }
     fetchData().then(d => d.json()).then(d => {
-      if (!d) {
-        setNoResume(true);
-      } else {
-        setNoResume(false);
-      }
       console.log(d); setData(d);
       setLoaded(true);
-    })
+      setNoResume(false);
+    }).catch((err) => setNoResume(true));
   }, [])
 
   return (

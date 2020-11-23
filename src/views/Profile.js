@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { baseUrl } from "../utilities";
 import { Link } from "react-router-dom";
-import { request } from "../utilities.js";
+import { baseUrl, request, logout } from "../utilities.js";
+import DeleteModal from "../components/Profile/DeleteModal.js";
 
 import "../css/Profile.css";
 
@@ -18,8 +18,12 @@ class Profile extends Component {
       email: "",
       parsedresume: null,
       id: 0,
-      updating: false
+      updating: false,
+      deleting: false
     };
+
+    this.openDelete = this.openDelete.bind(this);
+    this.closeDelete = this.closeDelete.bind(this);
   }
 
   componentDidMount() {
@@ -69,6 +73,21 @@ class Profile extends Component {
       .catch((err) => console.log(err));
   };
 
+  openDelete() {
+    this.setState({ deleting: true });
+  };
+
+  closeDelete() {
+    this.setState({ deleting: false });
+  };
+
+  delete = (e) => {
+    request(baseUrl + "/profile", {
+      method: "DELETE"
+    }).then((d) => logout());
+    this.setState({ deleting: false });
+  }
+
   render() {
     return (
       <div className="profile view">
@@ -83,7 +102,6 @@ class Profile extends Component {
               Please upload your resume <Link to="/">here</Link>.
             </div>
           )}
-        <br />
         <div className="edit-container">
           Edit your information here.
           <div className="profile__edit-info shadow-box">
@@ -151,6 +169,8 @@ class Profile extends Component {
             </button>
           </div>
         </div>
+        <button className="delete-button custom-button" onClick={this.openDelete} >Delete Account</button>
+        { this.state.deleting && <DeleteModal closeDelete={this.closeDelete} delete={this.delete} />}
       </div>
     );
   }
