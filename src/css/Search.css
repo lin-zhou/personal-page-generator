@@ -6,3 +6,15 @@
 .search__results-list {
   padding-left: 0;
 }
+
+.search-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.search-or-random {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

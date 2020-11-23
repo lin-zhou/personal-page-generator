@@ -18,6 +18,7 @@ class Profile extends Component {
       email: "",
       parsedresume: null,
       id: 0,
+      updating: false
     };
   }
 
@@ -28,7 +29,7 @@ class Profile extends Component {
     })
       .then((d) => d.json())
       .then((d) => {
-        console.log("d", d);
+        console.log(d);
         this.setState({ ...d, loaded: true });
       });
   }
@@ -50,6 +51,7 @@ class Profile extends Component {
   };
 
   update = (e) => {
+    this.setState({ updating: true });
     request(baseUrl + "/profile", {
       method: "POST",
       body: JSON.stringify({
@@ -60,7 +62,10 @@ class Profile extends Component {
         email: this.state.email,
       }),
     })
-      .then((d) => console.log(d))
+      .then((d) => {
+        console.log(d);
+        this.setState({ updating: false });
+      })
       .catch((err) => console.log(err));
   };
 
@@ -74,10 +79,10 @@ class Profile extends Component {
             <Link to={`/resume/${this.state.id}`}>website</Link>!
           </div>
         ) : (
-          <div>
-            Please upload your resume <Link to="/">here</Link>
-          </div>
-        )}
+            <div>
+              Please upload your resume <Link to="/">here</Link>.
+            </div>
+          )}
         <div className="edit-container">
           <div className="profile__edit-info shadow-box">
             Edit your information here.
@@ -141,7 +146,7 @@ class Profile extends Component {
               type="submit"
               onClick={this.update}
             >
-              Update
+              {!this.state.updating ? "Update" : "Updating..."}
             </button>
           </div>
         </div>

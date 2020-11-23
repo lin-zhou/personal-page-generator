@@ -29,21 +29,31 @@ class Search extends Component {
     interval = setTimeout(getResults, 250)
   };
 
+  goToRandom() {
+    fetch(`${baseUrl}/random`)
+      .then((d) => d.json())
+      .then((d) => window.location.replace(`/resume/${d.id}`));
+  };
+
   render() {
     return (
       <div className="search view">
-        <h1 className="search-container">Search: <input className="search-box" type="string" onChange={this.changeSearch} /></h1>
-        <ul>{this.state.users.map(d => {
-          return <li key={d.id}><Link to={`/resume/${d.id}`}>{`${d.firstname} ${d.lastname}`}</Link></li>
-        })}
-        </ul>
-        {this.state.users.length > 0 ?
-          ""
+        <div className="search-or-random">
+          <h1 className="search-container">
+            Search:&nbsp;<input className="search-box" type="string" onChange={this.changeSearch} />
+          </h1>
+          &nbsp;or take a look at a random user's resume!&nbsp;<button className="custom-button" onClick={this.goToRandom}>Random Resume!</button>
+        </div>
+        {(this.state.users && this.state.users.length > 0) ?
+          <ul>{this.state.users.map(d => {
+            return <li key={d.id}><Link to={`/resume/${d.id}`}>{`${d.firstname} ${d.lastname}`}</Link></li>
+          })}
+          </ul>
           :
           <p>
-            {this.state.query != "" ?
+            {this.state.query !== "" ?
               "No users with names containing your query." :
-              "Type a few letters and you'll get a list of users whose name contains your query!"
+              "Search users by first or last name."
             }
           </p>
         }

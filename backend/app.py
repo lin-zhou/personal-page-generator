@@ -112,8 +112,9 @@ def get_resume(userid):
 @app.route('/random')
 def random():
     with app.app_context():
-        user = query_db('select id, parsedresume FROM Users where parsedresume is not NULL order by RANDOM() limit 1;', one=True)
-        #return jsonify({"id": user['id'], "parsedresume": json.loads(user['parsedresume'])})
+        user = query_db(
+            'select id, parsedresume FROM Users where parsedresume is not NULL order by RANDOM() limit 1;', one=True)
+        # return jsonify({"id": user['id'], "parsedresume": json.loads(user['parsedresume'])})
         return jsonify({"id": user['id']})
 
 
@@ -121,7 +122,7 @@ def random():
 def autocomplete(i):
     with app.app_context():
         users = query_db(
-            "select id, firstname, lastname from Users where firstname like ? or lastname like ?", ('%'+i+'%', '%'+i+'%'))
+            "select id, firstname, lastname from Users where firstname like ? or lastname like ?", (i+'%', i+'%'))
         users_list = []
         for user in users:
             users_list.append(
