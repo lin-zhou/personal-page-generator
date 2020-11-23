@@ -14,17 +14,20 @@ class Education extends Component {
   }
 
   render() {
-    let schools = [];
-    if (this.state.schools) {
-      this.state.schools.forEach(school => schools.push(school));
+    let educationList = "";
+    if (this.props.schools) {
+      let schools = [];
+      if (this.state.schools) {
+        this.state.schools.forEach(school => schools.push(school));
+      }
+      educationList =
+        <div className="education section">
+          <div className="section-header">Education</div>
+          {schools.map(school => <div key={school.org + "_" + school.degree}>
+            <EducationCard school={school} />
+          </div>)}
+        </div>;
     }
-    let educationList =
-      <div className="education section">
-        <div className="section-header">Education</div>
-        {schools.map(school => <div key={school.org + "_" + school.degree}>
-          <EducationCard school={school} />
-        </div>)}
-      </div>;
 
     return educationList;
   }
