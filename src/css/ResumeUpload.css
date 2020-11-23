@@ -3,8 +3,10 @@
 }
 
 .rotating-logo {
-  height: 40vmin;
+  font-size: 40vmin;
+  color: #75BFF6;
   pointer-events: none;
+  margin-top: 25px;
 }
 
 @media (prefers-reduced-motion: no-preference) {

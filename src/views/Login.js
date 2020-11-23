@@ -6,6 +6,14 @@ import "../css/Login.css";
 
 // This is the page where the user uploads their resume to be parsed.
 class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      badLogin: false,
+      badRegister: false
+    }
+  }
+
   changeUsername = (e) => {
     this.setState({ username: e.target.value });
   };
@@ -24,55 +32,64 @@ class Login extends Component {
   };
 
   login = (e) => {
-    fetch(baseUrl + "/auth", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setAuthToken(data.access_token);
+    if (!this.state.username || !this.state.password) {
+      this.setState({ badLogin: true });
+    } else {
+      this.setState({ badLogin: false });
+      fetch(baseUrl + "/auth", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: this.state.username,
+          password: this.state.password,
+        }),
       })
-      .catch((err) => console.log(err));
+        .then((response) => response.json())
+        .then((data) => {
+          setAuthToken(data.access_token);
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   register = (e) => {
-    fetch(baseUrl + "/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password,
-        firstname: this.state.firstname,
-        lastname: this.state.lastname,
-        email: this.state.email,
-      }),
-    })
-      .then((d) => {
-        fetch(baseUrl + "/auth", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: this.state.username,
-            password: this.state.password,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            setAuthToken(data.access_token);
-          })
-          .catch((err) => console.log(err));
+    if (!this.state.firstname || !this.state.lastname || !this.state.username || !this.state.password || !this.state.email) {
+      this.setState({ badRegister: true });
+    } else {
+      fetch(baseUrl + "/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: this.state.username,
+          password: this.state.password,
+          firstname: this.state.firstname,
+          lastname: this.state.lastname,
+          email: this.state.email,
+        }),
       })
-      .catch((err) => console.log(err));
+        .then((d) => {
+          fetch(baseUrl + "/auth", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              username: this.state.username,
+              password: this.state.password,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              setAuthToken(data.access_token);
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   render() {
@@ -108,6 +125,7 @@ class Login extends Component {
             >
               Login
             </button>
+            <p className="red-text">{this.state.badLogin && "Username and password cannot be empty."}</p>
           </div>
         </div>
         <div className="register half-gap shadow-box">
@@ -170,6 +188,7 @@ class Login extends Component {
             >
               Register
             </button>
+            <p className="red-text">{this.state.badRegister && "Cannot register with empty fields."}</p>
           </div>
         </div>
       </div>

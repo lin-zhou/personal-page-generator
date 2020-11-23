@@ -83,9 +83,10 @@ class Profile extends Component {
               Please upload your resume <Link to="/">here</Link>.
             </div>
           )}
+        <br />
         <div className="edit-container">
+          Edit your information here.
           <div className="profile__edit-info shadow-box">
-            Edit your information here.
             <div className="edit-info__field">
               <label htmlFor="firstname">First Name</label>
               <br />

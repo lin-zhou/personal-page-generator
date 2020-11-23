@@ -1,8 +1,13 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/logo.svg";
 import "../css/ResumeUpload.css";
 import { Component } from "react";
 import { baseUrl, upload, request } from "../utilities.js";
+
+library.add(faUserCircle)
 
 // This is the page where the user uploads their resume to be parsed.
 class ResumeUpload extends Component {
@@ -46,7 +51,7 @@ class ResumeUpload extends Component {
     return (
       <div className="upload view">
         <header className="upload__header">
-          <img src={logo} className="rotating-logo" alt="logo" />
+          <FontAwesomeIcon icon="user-circle" className="rotating-logo" />
           <h1>Personal Website Generator</h1>
           <input
             className="upload__input"

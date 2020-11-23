@@ -1,6 +1,11 @@
+.profile {
+  text-align: center;
+}
+
 .edit-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile__edit-info {
@@ -15,4 +20,5 @@
   width: 60%;
   max-width: 500px;
   border-radius: 10px;
+  text-align: left;
 }

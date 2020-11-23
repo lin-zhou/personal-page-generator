@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { baseUrl, request } from "../utilities.js";
 
 import "../css/Search.css";
+
+library.add(faSearch)
 
 let interval = null
 
@@ -38,25 +43,29 @@ class Search extends Component {
   render() {
     return (
       <div className="search view">
-        <div className="search-or-random">
-          <h1 className="search-container">
-            Search:&nbsp;<input className="search-box" type="string" onChange={this.changeSearch} />
-          </h1>
-          &nbsp;or take a look at a random user's resume!&nbsp;<button className="custom-button" onClick={this.goToRandom}>Random Resume!</button>
+        <div className="shadow-box search-container">
+          <h1>Search</h1>
+          <p>Search for users by first or last name, or take a look at a random user's resume!</p>
+          <div className="search-or-random">
+            <div className="search-bar">
+              <FontAwesomeIcon icon="search" /><input className="search-box" type="string" onChange={this.changeSearch} />
+            </div>
+            <button className="custom-button" onClick={this.goToRandom}>Random Resume!</button>
+          </div>
+          {(this.state.users && this.state.users.length > 0) ?
+            <ul>{this.state.users.map(d => {
+              return <li key={d.id}><Link to={`/resume/${d.id}`}>{`${d.firstname} ${d.lastname}`}</Link></li>
+            })}
+            </ul>
+            :
+            <p>
+              {this.state.query !== "" ?
+                "No users with names containing your query." :
+                ""
+              }
+            </p>
+          }
         </div>
-        {(this.state.users && this.state.users.length > 0) ?
-          <ul>{this.state.users.map(d => {
-            return <li key={d.id}><Link to={`/resume/${d.id}`}>{`${d.firstname} ${d.lastname}`}</Link></li>
-          })}
-          </ul>
-          :
-          <p>
-            {this.state.query !== "" ?
-              "No users with names containing your query." :
-              "Search users by first or last name."
-            }
-          </p>
-        }
       </div>
     );
   }
