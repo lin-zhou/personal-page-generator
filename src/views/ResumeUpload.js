@@ -9,8 +9,9 @@ class ResumeUpload extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      file: null
-    }
+      file: null,
+      uploading: false,
+    };
   }
 
   onFileChange = (e) => {
@@ -22,12 +23,16 @@ class ResumeUpload extends Component {
       const formData = new FormData();
       formData.append("resume", this.state.file);
 
+      this.setState({ uploading: true });
+
       upload(`${baseUrl}/upload`, {
         method: "POST",
         body: formData,
       })
         .then((d) => d.json())
-        .then((d) => console.log(d))
+        .then((d) => {
+          this.setState({ uploading: false });
+        })
         .catch((err) => console.log(err));
     }
   };
@@ -38,13 +43,24 @@ class ResumeUpload extends Component {
         <header className="upload__header">
           <img src={logo} className="rotating-logo" alt="logo" />
           <h1>Personal Website Generator</h1>
-          <input className="upload__input" type="file" accept="application/pdf" onChange={this.onFileChange} />
-          {this.state.file ?
-            "" :
+          <input
+            className="upload__input"
+            type="file"
+            accept="application/pdf"
+            onChange={this.onFileChange}
+          />
+          {this.state.file ? (
+            ""
+          ) : (
             <p className="normal-font">Please select a PDF of your resume.</p>
-          }
-          <button disabled={!this.state.file} className="upload__button custom-button" type="submit" onClick={this.uploadResume}>
-            Upload Resume
+          )}
+          <button
+            disabled={!this.state.file}
+            className="upload__button custom-button"
+            type="submit"
+            onClick={this.uploadResume}
+          >
+            {!this.state.uploading ? "Upload Resume" : "Uploading"}
           </button>
         </header>
       </div>

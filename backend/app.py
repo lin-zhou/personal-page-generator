@@ -109,6 +109,14 @@ def get_resume(userid):
         return jsonify(json.loads(user['parsedresume']))
 
 
+@app.route('/random')
+def random():
+    with app.app_context():
+        user = query_db('select id, parsedresume FROM Users where parsedresume is not NULL order by RANDOM() limit 1;', one=True)
+        #return jsonify({"id": user['id'], "parsedresume": json.loads(user['parsedresume'])})
+        return jsonify({"id": user['id']})
+
+
 @app.route('/autocomplete/<i>')
 def autocomplete(i):
     with app.app_context():
@@ -135,7 +143,7 @@ def profile():
         with app.app_context():
             user = query_db('select * from Users where id = ?',
                             (userid,), one=True)
-            return jsonify({"id": userid, "username": user['username'], "firstname": user['firstname'], "lastname": user['lastname'], "email": user['email']})
+            return jsonify({"id": userid, "username": user['username'], "firstname": user['firstname'], "lastname": user['lastname'], "email": user['email'], "parsedresume": user['parsedresume']})
     elif request.method == "POST":
         with app.app_context():
             username = request.json['username']

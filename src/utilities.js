@@ -4,7 +4,7 @@ if (dev) {
   baseUrl = "http://localhost:1080";
 }
 
-export let authToken = null;
+export let authToken = localStorage.getItem("token");
 
 export function request(url, body) {
   if (body === undefined) {
@@ -31,6 +31,13 @@ export function upload(url, body) {
   return fetch(url, body);
 }
 
+export function logout() {
+  localStorage.removeItem("token");
+  window.location.replace("/");
+}
+
 export function setAuthToken(t) {
+  window.location.reload();
+  localStorage.setItem("token", t);
   authToken = t;
 }

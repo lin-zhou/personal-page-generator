@@ -37,7 +37,6 @@ class Login extends Component {
       .then((response) => response.json())
       .then((data) => {
         setAuthToken(data.access_token);
-        // window.location.reload(); // TODO: Bring back once we save session info.
       })
       .catch((err) => console.log(err));
   };
@@ -56,7 +55,23 @@ class Login extends Component {
         email: this.state.email,
       }),
     })
-      .then((d) => console.log(d))
+      .then((d) => {
+        fetch(baseUrl + "/auth", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: this.state.username,
+            password: this.state.password,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            setAuthToken(data.access_token);
+          })
+          .catch((err) => console.log(err));
+      })
       .catch((err) => console.log(err));
   };
 
@@ -67,14 +82,30 @@ class Login extends Component {
           <h1>Login</h1>
           <div className="login-form">
             <div className="edit-info__field margin-bottom-15">
-              <label for="username">User Name</label><br />
-              <input className="edit-info__input" type="string" name="username" onChange={this.changeUsername} />
+              <label for="username">User Name</label>
+              <br />
+              <input
+                className="edit-info__input"
+                type="string"
+                name="username"
+                onChange={this.changeUsername}
+              />
             </div>
             <div className="edit-info__field margin-bottom-15">
-              <label for="password">Password</label><br />
-              <input className="edit-info__input" type="string" name="email" onChange={this.changePassword} />
+              <label for="password">Password</label>
+              <br />
+              <input
+                className="edit-info__input"
+                type="string"
+                name="email"
+                onChange={this.changePassword}
+              />
             </div>
-            <button className="custom-button" type="submit" onClick={this.login}>
+            <button
+              className="custom-button"
+              type="submit"
+              onClick={this.login}
+            >
               Login
             </button>
           </div>
@@ -83,26 +114,60 @@ class Login extends Component {
           <h1>Register</h1>
           <div className="login-form">
             <div className="edit-info__field margin-bottom-15">
-              <label for="firstname">First Name</label><br />
-              <input className="edit-info__input" type="string" name="firstname" onChange={this.changeFirstName} />
+              <label for="firstname">First Name</label>
+              <br />
+              <input
+                className="edit-info__input"
+                type="string"
+                name="firstname"
+                onChange={this.changeFirstName}
+              />
             </div>
             <div className="edit-info__field margin-bottom-15">
-              <label for="lastname">Last Name</label><br />
-              <input className="edit-info__input" type="string" name="lastname" onChange={this.changeLastName} />
+              <label for="lastname">Last Name</label>
+              <br />
+              <input
+                className="edit-info__input"
+                type="string"
+                name="lastname"
+                onChange={this.changeLastName}
+              />
             </div>
             <div className="edit-info__field margin-bottom-15">
-              <label for="username">User Name</label><br />
-              <input className="edit-info__input" type="string" name="username" onChange={this.changeUsername} />
+              <label for="username">User Name</label>
+              <br />
+              <input
+                className="edit-info__input"
+                type="string"
+                name="username"
+                onChange={this.changeUsername}
+              />
             </div>
             <div className="edit-info__field margin-bottom-15">
-              <label for="password">Password</label><br />
-              <input className="edit-info__input" type="string" name="email" onChange={this.changePassword} />
+              <label for="password">Password</label>
+              <br />
+              <input
+                className="edit-info__input"
+                type="string"
+                name="email"
+                onChange={this.changePassword}
+              />
             </div>
             <div className="edit-info__field margin-bottom-15">
-              <label for="email">Email</label><br />
-              <input className="edit-info__input" type="string" name="email" onChange={this.changeEmail} />
+              <label for="email">Email</label>
+              <br />
+              <input
+                className="edit-info__input"
+                type="string"
+                name="email"
+                onChange={this.changeEmail}
+              />
             </div>
-            <button className="custom-button" type="submit" onClick={this.register}>
+            <button
+              className="custom-button"
+              type="submit"
+              onClick={this.register}
+            >
               Register
             </button>
           </div>
