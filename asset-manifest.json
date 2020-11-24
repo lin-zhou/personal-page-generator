@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/personal-page-generator/static/css/main.c95ff7ca.chunk.css",
+    "main.css": "/personal-page-generator/static/css/main.3cb3b00c.chunk.css",
     "main.js": "/personal-page-generator/static/js/main.24ea9f25.chunk.js",
     "main.js.map": "/personal-page-generator/static/js/main.24ea9f25.chunk.js.map",
     "runtime-main.js": "/personal-page-generator/static/js/runtime-main.fcfa5c98.js",
@@ -8,16 +8,16 @@
     "static/js/2.d84fd9c1.chunk.js": "/personal-page-generator/static/js/2.d84fd9c1.chunk.js",
     "static/js/2.d84fd9c1.chunk.js.map": "/personal-page-generator/static/js/2.d84fd9c1.chunk.js.map",
     "index.html": "/personal-page-generator/index.html",
-    "precache-manifest.aa9fa70a97e7774a9d4d53c7a585a27c.js": "/personal-page-generator/precache-manifest.aa9fa70a97e7774a9d4d53c7a585a27c.js",
+    "precache-manifest.137399b66d3337445d7f9e28438a58bc.js": "/personal-page-generator/precache-manifest.137399b66d3337445d7f9e28438a58bc.js",
     "service-worker.js": "/personal-page-generator/service-worker.js",
-    "static/css/main.c95ff7ca.chunk.css.map": "/personal-page-generator/static/css/main.c95ff7ca.chunk.css.map",
+    "static/css/main.3cb3b00c.chunk.css.map": "/personal-page-generator/static/css/main.3cb3b00c.chunk.css.map",
     "static/js/2.d84fd9c1.chunk.js.LICENSE.txt": "/personal-page-generator/static/js/2.d84fd9c1.chunk.js.LICENSE.txt",
     "static/media/logo.svg": "/personal-page-generator/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.fcfa5c98.js",
     "static/js/2.d84fd9c1.chunk.js",
-    "static/css/main.c95ff7ca.chunk.css",
+    "static/css/main.3cb3b00c.chunk.css",
     "static/js/main.24ea9f25.chunk.js"
   ]
 }
