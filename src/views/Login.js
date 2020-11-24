@@ -131,7 +131,7 @@ class Login extends Component {
                 <br />
                 <input
                   className="edit-info__input"
-                  type="string"
+                  type="password"
                   name="email"
                   onChange={this.changePassword}
                 />
@@ -185,7 +185,7 @@ class Login extends Component {
                 <br />
                 <input
                   className="edit-info__input"
-                  type="string"
+                  type="password"
                   name="email"
                   onChange={this.changePassword}
                 />

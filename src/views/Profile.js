@@ -143,8 +143,8 @@ class Profile extends Component {
               <br />
               <input
                 className="edit-info__input"
-                type="string"
-                name="email"
+                type="password"
+                name="password"
                 value={this.state.password}
                 onChange={this.changePassword}
               />
