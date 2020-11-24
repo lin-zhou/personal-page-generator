@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { baseUrl, request } from "../utilities.js";
+import { baseRegular, baseUrl, request } from "../utilities.js";
 
 import "../css/Search.css";
 
@@ -37,7 +37,7 @@ class Search extends Component {
   goToRandom() {
     fetch(`${baseUrl}/random`)
       .then((d) => d.json())
-      .then((d) => window.location.replace(`/resume/${d.id}`));
+      .then((d) => window.location.replace(baseRegular + `resume/${d.id}`));
   };
 
   render() {

@@ -5,7 +5,7 @@ import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/logo.svg";
 import "../css/ResumeUpload.css";
 import { Component } from "react";
-import { baseUrl, upload, request } from "../utilities.js";
+import { baseUrl, upload, request, baseRegular } from "../utilities.js";
 
 library.add(faUserCircle)
 
@@ -41,7 +41,7 @@ class ResumeUpload extends Component {
             method: "GET",
           })
             .then((p) => p.json())
-            .then((p) => window.location.replace("/resume/" + p.id));
+            .then((p) => window.location.replace(baseRegular + "resume/" + p.id));
         })
         .catch((err) => console.log(err));
     }

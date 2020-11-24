@@ -11,11 +11,20 @@ from datetime import timedelta
 
 app = Flask(__name__)
 app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=262980)
-CORS(app)
+#app.config['CORS_SEND_WILDCARD'] = True
+# CORS(app)
 
 app.secret_key = 'ResumeUploaderSecret'
 
 DATABASE = 'database.db'
+
+
+@app.after_request
+def add_headers(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers',
+                         'Content-Type,Authorization')
+    return response
 
 
 def get_db():

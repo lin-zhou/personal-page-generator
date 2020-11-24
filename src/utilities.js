@@ -1,7 +1,12 @@
-const dev = true;
-export let baseUrl = "PRODUCTION";
+const dev = false;
+export let baseUrl = "https://parser.zhoulindsay.com";
 if (dev) {
   baseUrl = "http://localhost:1080";
+}
+
+export let baseRegular = "/personal-page-generator/"
+if (dev) {
+  baseRegular = "/"
 }
 
 export let authToken = localStorage.getItem("token");
@@ -33,7 +38,7 @@ export function upload(url, body) {
 
 export function logout() {
   localStorage.removeItem("token");
-  window.location.replace("/");
+  window.location.replace(baseRegular);
 }
 
 export function setAuthToken(t) {
