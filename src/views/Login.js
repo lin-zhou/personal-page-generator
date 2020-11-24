@@ -111,102 +111,105 @@ class Login extends Component {
   render() {
     return (
       <div className="login-register view">
-        <div className="login half-gap shadow-box">
-          <h1>Login</h1>
-          <div className="login-form">
-            <div className="edit-info__field margin-bottom-15">
-              <label for="username">User Name</label>
-              <br />
-              <input
-                className="edit-info__input"
-                type="string"
-                name="username"
-                onChange={this.changeUsername}
-              />
-            </div>
-            <div className="edit-info__field margin-bottom-15">
-              <label for="password">Password</label>
-              <br />
-              <input
-                className="edit-info__input"
-                type="string"
-                name="email"
-                onChange={this.changePassword}
-              />
-            </div>
-            <button
-              className="custom-button"
-              type="submit"
-              onClick={this.login}
-            >
-              Login
+        <h1 className="login-title">Personal Website Generator</h1>
+        <div className="login-register-container">
+          <div className="login half-gap shadow-box">
+            <h1>Login</h1>
+            <div className="login-form">
+              <div className="edit-info__field margin-bottom-15">
+                <label for="username">User Name</label>
+                <br />
+                <input
+                  className="edit-info__input"
+                  type="string"
+                  name="username"
+                  onChange={this.changeUsername}
+                />
+              </div>
+              <div className="edit-info__field margin-bottom-15">
+                <label for="password">Password</label>
+                <br />
+                <input
+                  className="edit-info__input"
+                  type="string"
+                  name="email"
+                  onChange={this.changePassword}
+                />
+              </div>
+              <button
+                className="custom-button"
+                type="submit"
+                onClick={this.login}
+              >
+                Login
             </button>
-            <p className="red-text">{this.state.badLogin && "Username and password cannot be empty."}</p>
-            <p className="red-text">{this.state.failedLogin && "Incorrect username or password."}</p>
+              <p className="red-text">{this.state.badLogin && "Username and password cannot be empty."}</p>
+              <p className="red-text">{this.state.failedLogin && "Incorrect username or password."}</p>
+            </div>
           </div>
-        </div>
-        <div className="register half-gap shadow-box">
-          <h1>Register</h1>
-          <div className="login-form">
-            <div className="edit-info__field margin-bottom-15">
-              <label for="firstname">First Name</label>
-              <br />
-              <input
-                className="edit-info__input"
-                type="string"
-                name="firstname"
-                onChange={this.changeFirstName}
-              />
-            </div>
-            <div className="edit-info__field margin-bottom-15">
-              <label for="lastname">Last Name</label>
-              <br />
-              <input
-                className="edit-info__input"
-                type="string"
-                name="lastname"
-                onChange={this.changeLastName}
-              />
-            </div>
-            <div className="edit-info__field margin-bottom-15">
-              <label for="username">User Name</label>
-              <br />
-              <input
-                className="edit-info__input"
-                type="string"
-                name="username"
-                onChange={this.changeUsername}
-              />
-            </div>
-            <div className="edit-info__field margin-bottom-15">
-              <label for="password">Password</label>
-              <br />
-              <input
-                className="edit-info__input"
-                type="string"
-                name="email"
-                onChange={this.changePassword}
-              />
-            </div>
-            <div className="edit-info__field margin-bottom-15">
-              <label for="email">Email</label>
-              <br />
-              <input
-                className="edit-info__input"
-                type="string"
-                name="email"
-                onChange={this.changeEmail}
-              />
-            </div>
-            <button
-              className="custom-button"
-              type="submit"
-              onClick={this.register}
-            >
-              Register
+          <div className="register half-gap shadow-box">
+            <h1>Register</h1>
+            <div className="login-form">
+              <div className="edit-info__field margin-bottom-15">
+                <label for="firstname">First Name</label>
+                <br />
+                <input
+                  className="edit-info__input"
+                  type="string"
+                  name="firstname"
+                  onChange={this.changeFirstName}
+                />
+              </div>
+              <div className="edit-info__field margin-bottom-15">
+                <label for="lastname">Last Name</label>
+                <br />
+                <input
+                  className="edit-info__input"
+                  type="string"
+                  name="lastname"
+                  onChange={this.changeLastName}
+                />
+              </div>
+              <div className="edit-info__field margin-bottom-15">
+                <label for="username">User Name</label>
+                <br />
+                <input
+                  className="edit-info__input"
+                  type="string"
+                  name="username"
+                  onChange={this.changeUsername}
+                />
+              </div>
+              <div className="edit-info__field margin-bottom-15">
+                <label for="password">Password</label>
+                <br />
+                <input
+                  className="edit-info__input"
+                  type="string"
+                  name="email"
+                  onChange={this.changePassword}
+                />
+              </div>
+              <div className="edit-info__field margin-bottom-15">
+                <label for="email">Email</label>
+                <br />
+                <input
+                  className="edit-info__input"
+                  type="string"
+                  name="email"
+                  onChange={this.changeEmail}
+                />
+              </div>
+              <button
+                className="custom-button"
+                type="submit"
+                onClick={this.register}
+              >
+                Register
             </button>
-            <p className="red-text">{this.state.badRegister && "Cannot register with empty fields."}</p>
-            <p className="red-text">{this.state.failedRegister && "Something went wrong with your registration."}</p>
+              <p className="red-text">{this.state.badRegister && "Cannot register with empty fields."}</p>
+              <p className="red-text">{this.state.failedRegister && "Something went wrong with your registration."}</p>
+            </div>
           </div>
         </div>
       </div>
