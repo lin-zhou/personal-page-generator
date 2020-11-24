@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "react-scripts build && scp -r build/* root@104.238.129.124:/var/www/html/"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -38,5 +38,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "http://lin-zhou.github.io/personal-page-generator"
+  "homepage": "https://426.zhoulindsay.com"
 }

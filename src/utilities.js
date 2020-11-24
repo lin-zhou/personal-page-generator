@@ -4,7 +4,7 @@ if (dev) {
   baseUrl = "http://localhost:1080";
 }
 
-export let baseRegular = "/personal-page-generator/"
+export let baseRegular = "/"
 if (dev) {
   baseRegular = "/"
 }

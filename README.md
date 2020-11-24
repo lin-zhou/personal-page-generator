@@ -6,7 +6,7 @@ The personal website generator is designed to create a website page based on you
 
 The personal website generator is coded using ReactJS, Flask, Lever API, etc. A SQLite database to store user information and resume files which can be updated or deleted as needed.
 
-Check out the website at https://lin-zhou.github.io/personal-page-generator/.
+Check out the website at https://426.zhoulindsay.com/.
 
 # Installation Backend
 Install [Python](https://www.python.org/downloads/).
